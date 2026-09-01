@@ -1,64 +1,817 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herminio - Portfólio</title>
-    <link rel="stylesheet" href="style.css">
+  <!-- Permite apresentar corretamente acentos e caracteres portugueses -->
+  <meta charset="UTF-8">
+
+  <!-- Faz o portfólio adaptar-se ao computador, tablet e telemóvel -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Descrição utilizada pelos motores de pesquisa -->
+  <meta name="description" content="Portfólio profissional de Hermínio Armando Boca, árbitro internacional FIFA e técnico de eletricidade.">
+
+  <!-- Título apresentado na aba do navegador -->
+  <title>Hermínio Boca | Árbitro Internacional FIFA</title>
+
+  <!-- Importação das fontes utilizadas no portfólio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. CORES E CONFIGURAÇÕES GERAIS
+       As variáveis facilitam a alteração das cores do site.
+    ========================================================= */
+    :root {
+      --navy: #071a2f;
+      --navy-light: #102d4c;
+      --blue: #1d77f3;
+      --cyan: #35c2d8;
+      --gold: #e3b341;
+      --white: #ffffff;
+      --background: #f4f7fb;
+      --text: #142033;
+      --muted: #667085;
+      --line: #dce5ef;
+      --shadow: 0 22px 60px rgba(7, 26, 47, 0.13);
+    }
+
+    /* Remove margens automáticas e calcula tamanhos corretamente */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Faz a navegação entre as secções ficar suave */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    img { max-width: 100%; }
+
+    /* Limita a largura do conteúdo e mantém tudo centralizado */
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    .section { padding: 100px 0; }
+
+    .eyebrow {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      color: var(--navy);
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+
+    /* =========================================================
+       2. CABEÇALHO E MENU
+    ========================================================= */
+    .header {
+      min-height: 100vh;
+      color: var(--white);
+      overflow: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(29, 119, 243, .30), transparent 32%),
+        linear-gradient(135deg, #041321, var(--navy) 55%, #0c355d);
+    }
+
+    /* Elemento decorativo no fundo do cabeçalho */
+    .header::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: -240px;
+      bottom: -240px;
+      border: 1px solid rgba(53, 194, 216, .25);
+      border-radius: 50%;
+    }
+
+    .nav {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      color: white;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--cyan); }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #dce7f3;
+      font-size: 14px;
+      text-decoration: none;
+      transition: .25s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* Este botão aparece somente em telemóveis */
+    .menu-button {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 0;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       3. APRESENTAÇÃO PRINCIPAL
+    ========================================================= */
+    .hero {
+      min-height: calc(100vh - 88px);
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 70px;
+      padding: 50px 0 90px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero .eyebrow { color: var(--cyan); }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(55px, 7vw, 96px);
+      line-height: .98;
+      letter-spacing: -5px;
+    }
+
+    .hero h1 span {
+      color: transparent;
+      -webkit-text-stroke: 1px #6eb7ff;
+    }
+
+    .hero-description {
+      max-width: 630px;
+      color: #bac9d8;
+      font-size: 17px;
+      margin: 28px 0 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 14px 22px;
+      border: 1px solid;
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .25s, background .25s;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+    .button-primary { background: var(--blue); border-color: var(--blue); }
+    .button-cv { background: transparent; border-color: rgba(255,255,255,.35); }
+    .button-cv:hover { background: rgba(255,255,255,.08); }
+
+    /* =========================================================
+       4. FOTOGRAFIA
+    ========================================================= */
+    .photo-box {
+      max-width: 450px;
+      margin-left: auto;
+      position: relative;
+    }
+
+    .photo-frame {
+      padding: 12px;
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 28px;
+      transform: rotate(2deg);
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 20px;
+      transform: rotate(-2deg);
+    }
+
+    .fifa-badge {
+      position: absolute;
+      left: -38px;
+      bottom: 35px;
+      padding: 14px 18px;
+      background: white;
+      color: var(--navy);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .fifa-badge strong {
+      display: block;
+      color: var(--blue);
+      font-size: 18px;
+    }
+
+    /* =========================================================
+       5. SECÇÃO SOBRE
+    ========================================================= */
+    .about { background: white; }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-card {
+      padding: 38px;
+      background: var(--background);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-card p { color: var(--muted); margin-bottom: 16px; }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .fact {
+      padding-top: 14px;
+      border-top: 2px solid var(--cyan);
+    }
+
+    .fact strong, .fact span { display: block; }
+    .fact strong { color: var(--navy); }
+    .fact span { color: var(--muted); font-size: 12px; }
+
+    /* =========================================================
+       6. NÚMEROS DA CARREIRA
+    ========================================================= */
+    .numbers {
+      padding: 45px 0;
+      background: var(--navy);
+      color: white;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      text-align: center;
+    }
+
+    .number-item strong {
+      display: block;
+      color: var(--cyan);
+      font: 700 42px "Space Grotesk", sans-serif;
+    }
+
+    .number-item span { color: #aebdcd; font-size: 13px; }
+
+    /* =========================================================
+       7. CARREIRA DE ARBITRAGEM
+    ========================================================= */
+    .centered { text-align: center; margin-bottom: 60px; }
+
+    .timeline {
+      max-width: 900px;
+      margin: auto;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 75px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 30px;
+      padding-bottom: 28px;
+      position: relative;
+    }
+
+    .timeline-year { color: var(--blue); font-weight: 800; }
+
+    .timeline-content {
+      padding: 24px 28px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(7, 26, 47, .07);
+    }
+
+    .timeline-content h3 { color: var(--navy); margin-bottom: 4px; }
+    .timeline-content p { color: var(--muted); }
+
+    /* =========================================================
+       8. EXPERIÊNCIA PROFISSIONAL
+    ========================================================= */
+    .experience {
+      color: white;
+      background: linear-gradient(135deg, var(--navy), #0e3b67);
+    }
+
+    .experience .eyebrow { color: var(--cyan); }
+    .experience .section-title { color: white; max-width: 750px; margin-bottom: 50px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      min-height: 325px;
+      padding: 30px;
+      background: white;
+      color: var(--text);
+      border-radius: 18px;
+      position: relative;
+      overflow: hidden;
+      transition: .25s;
+    }
+
+    .card:hover { transform: translateY(-7px); }
+
+    .card-number {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      color: #e7eef6;
+      font: 700 52px "Space Grotesk", sans-serif;
+    }
+
+    .card-year { color: var(--blue); font-weight: 800; margin-bottom: 55px; }
+    .card h3 { color: var(--navy); font: 700 24px "Space Grotesk", sans-serif; line-height: 1.2; margin-bottom: 14px; }
+    .card p { color: var(--muted); font-size: 14px; }
+
+    /* =========================================================
+       9. COMPETÊNCIAS E FORMAÇÃO
+    ========================================================= */
+    .skills-list {
+      padding: 10px 32px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .skill {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill:last-child { border-bottom: 0; }
+    .skill b { color: var(--blue); font-size: 12px; }
+
+    .education-box {
+      margin-top: 55px;
+      padding: 35px;
+      color: white;
+      background: var(--blue);
+      border-radius: 20px;
+    }
+
+    .education-box h3 { font: 700 25px "Space Grotesk", sans-serif; margin-bottom: 20px; }
+    .education-box ul { padding-left: 20px; }
+    .education-box li { margin-bottom: 8px; color: #e5f0ff; }
+
+    /* =========================================================
+       10. CONTACTO
+    ========================================================= */
+    .contact {
+      padding: 105px 0;
+      color: white;
+      text-align: center;
+      background: var(--navy);
+    }
+
+    .contact-content { max-width: 850px; margin: auto; }
+    .contact .eyebrow { color: var(--cyan); }
+    .contact h2 { font: 700 clamp(42px, 6vw, 78px) "Space Grotesk", sans-serif; line-height: 1.05; margin-bottom: 20px; }
+    .contact-text { color: #aebdcd; }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 32px;
+    }
+
+    .contact-links a {
+      padding: 12px 18px;
+      color: white;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .contact-links a:hover { background: var(--blue); border-color: var(--blue); }
+
+    /* =========================================================
+       11. RODAPÉ
+    ========================================================= */
+    footer { padding: 24px 0; background: #03101e; color: #8293a6; }
+    .footer-content { display: flex; justify-content: space-between; }
+    footer a { color: #b8c8d8; text-decoration: none; }
+
+    /* Elementos começam escondidos e aparecem com JavaScript */
+    .reveal { opacity: 0; transform: translateY(25px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* =========================================================
+       12. ADAPTAÇÃO PARA TELEMÓVEIS
+    ========================================================= */
+    @media (max-width: 800px) {
+      .menu-button { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 75px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 18px;
+        padding: 24px;
+        background: var(--navy-light);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open { display: flex; }
+      .hero, .two-columns { grid-template-columns: 1fr; }
+      .hero { gap: 60px; }
+      .hero h1 { font-size: 55px; letter-spacing: -3px; }
+      .photo-box { width: 88%; margin: auto; }
+      .photo { height: 470px; }
+      .fifa-badge { left: -15px; }
+      .section { padding: 75px 0; }
+      .two-columns { gap: 40px; }
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+      .number-grid { grid-template-columns: 1fr 1fr; }
+      .timeline::before { left: 44px; }
+      .timeline-item { grid-template-columns: 65px 1fr; gap: 12px; }
+      .timeline-content { padding: 20px; }
+      .cards { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; gap: 10px; text-align: center; }
+    }
+
+    @media (max-width: 450px) {
+      .hero h1 { font-size: 47px; }
+      .photo { height: 420px; }
+      .quick-facts { grid-template-columns: 1fr; }
+      .number-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <h1 class="logo">Herminio</h1>
-            <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-        </div>
+  <!-- =======================================================
+       CABEÇALHO: menu, apresentação e fotografia
+  ======================================================== -->
+  <header class="header" id="inicio">
+    <nav class="nav container" aria-label="Navegação principal">
+      <!-- Logótipo formado pelas iniciais do nome -->
+      <a class="logo" href="#inicio">HB<span>.</span></a>
+
+      <!-- Botão utilizado para abrir o menu no telemóvel -->
+      <button class="menu-button" aria-label="Abrir menu" aria-expanded="false">☰</button>
+
+      <!-- Cada link leva o visitante para uma secção do portfólio -->
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#carreira">Carreira</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#competencias">Competências</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
     </nav>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h2>Bem-vindo! 👋</h2>
-            <p>Desenvolvedor apaixonado por criar soluções inovadoras</p>
+    <section class="hero container">
+      <!-- Texto principal do portfólio -->
+      <div class="reveal">
+        <p class="eyebrow">Árbitro Internacional FIFA · Moçambique</p>
+        <h1>Hermínio<br><span>Armando Boca.</span></h1>
+
+        <p class="hero-description">
+          Árbitro experiente, preparado para tomar decisões rápidas, manter a calma sob pressão e proteger a integridade do jogo com imparcialidade, justiça e transparência.
+        </p>
+
+        <div class="hero-buttons">
+          <!-- Botão que leva para a área de contacto -->
+          <a class="button button-primary" href="#contacto">Entrar em contacto</a>
+
+          <!--
+            O atributo download permite baixar o PDF.
+            O PDF deve existir dentro da pasta assets.
+          -->
+          <a class="button button-cv" href="assets/HERMINIO-BOCA-CV.pdf" download>↓ Baixar CV</a>
         </div>
+      </div>
+
+      <!-- Área da fotografia profissional -->
+      <div class="photo-box reveal">
+        <div class="photo-frame">
+          <img class="photo" src="assets/herminio-boca.jpg" alt="Fotografia profissional de Hermínio Armando Boca">
+        </div>
+
+        <div class="fifa-badge">
+          <strong>FIFA</strong>
+          Árbitro Internacional · 2025
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <!-- =====================================================
+         SOBRE: resumo do perfil profissional
+    ====================================================== -->
+    <section class="section about" id="sobre">
+      <div class="container two-columns">
+        <div class="reveal">
+          <p class="eyebrow">Perfil profissional</p>
+          <h2 class="section-title">Disciplina dentro e fora do campo.</h2>
+        </div>
+
+        <div class="about-card reveal">
+          <p>
+            Sou Hermínio Boca, árbitro de futebol experiente e qualificado à categoria FIFA. Tenho um percurso comprovado na tomada de decisões rápidas e precisas, mantendo serenidade em ambientes de elevada pressão.
+          </p>
+          <p>
+            Sou apaixonado pelo desporto e comprometido com uma competição justa, transparente e segura. Também possuo experiência profissional em eletricidade, manutenção industrial, refrigeração e climatização.
+          </p>
+
+          <!-- Informações profissionais rápidas -->
+          <div class="quick-facts">
+            <div class="fact"><strong>Xai-Xai</strong><span>Localização</span></div>
+            <div class="fact"><strong>FIFA</strong><span>Categoria internacional</span></div>
+            <div class="fact"><strong>C1</strong><span>Carta de condução</span></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Sobre Mim</h2>
-            <p>Sou um desenvolvedor em constante aprendizado, dedicado a criar experiências web de qualidade.</p>
-        </div>
+    <!-- Números importantes da carreira -->
+    <section class="numbers">
+      <div class="container number-grid reveal">
+        <div class="number-item"><strong>13+</strong><span>Anos na arbitragem</span></div>
+        <div class="number-item"><strong>FIFA</strong><span>Categoria internacional</span></div>
+        <div class="number-item"><strong>3</strong><span>Idiomas</span></div>
+        <div class="number-item"><strong>6+</strong><span>Anos como eletricista</span></div>
+      </div>
     </section>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Projetos</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>Projeto 1</h3>
-                    <p>Descrição do projeto</p>
-                </div>
-                <div class="project-card">
-                    <h3>Projeto 2</h3>
-                    <p>Descrição do projeto</p>
-                </div>
-            </div>
+    <!-- =====================================================
+         CARREIRA: linha do tempo da arbitragem
+    ====================================================== -->
+    <section class="section" id="carreira">
+      <div class="container">
+        <div class="centered reveal">
+          <p class="eyebrow">Percurso na arbitragem</p>
+          <h2 class="section-title">Da formação à categoria FIFA.</h2>
         </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span class="timeline-year">2026</span>
+            <div class="timeline-content"><h3>Atualização FIFA</h3><p>Curso de atualização das Leis do Jogo.</p></div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="timeline-year">2025</span>
+            <div class="timeline-content"><h3>Árbitro Internacional FIFA</h3><p>Promoção à categoria internacional e curso CAF de Futebol 11 no Egipto.</p></div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="timeline-year">2024</span>
+            <div class="timeline-content"><h3>Formação COSAFA e FIFA</h3><p>Curso de arbitragem COSAFA e formação FIFA Elite Referees.</p></div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="timeline-year">2023</span>
+            <div class="timeline-content"><h3>Primeira Categoria Nacional</h3><p>Promoção a árbitro central da Primeira Categoria Nacional.</p></div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="timeline-year">2017</span>
+            <div class="timeline-content"><h3>Segunda Categoria Nacional</h3><p>Mudança para árbitro central e promoção à Segunda Categoria Nacional.</p></div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="timeline-year">2013</span>
+            <div class="timeline-content"><h3>Início na arbitragem</h3><p>Ingresso e formação em arbitragem de Futebol 11.</p></div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contato</h2>
-            <p>Entre em contato comigo:</p>
-            <a href="https://github.com/hboca-del" class="btn">GitHub</a>
+    <!-- =====================================================
+         EXPERIÊNCIA PROFISSIONAL
+    ====================================================== -->
+    <section class="section experience" id="experiencia">
+      <div class="container">
+        <p class="eyebrow reveal">Experiência profissional</p>
+        <h2 class="section-title reveal">Experiência técnica e desportiva.</h2>
+
+        <div class="cards">
+          <article class="card reveal">
+            <span class="card-number">01</span>
+            <p class="card-year">2013 — Atual</p>
+            <h3>Árbitro de Futebol</h3>
+            <p>Carreira iniciada como árbitro assistente na COPAF de Gaza, seguida pela progressão a árbitro central nacional e internacional FIFA.</p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-number">02</span>
+            <p class="card-year">2018 — 2024</p>
+            <h3>Eletricista · Electro Cuco</h3>
+            <p>Montagem de instalações monofásicas e trifásicas, equipamentos elétricos, refrigeração, climatização e manutenção de bombas de água.</p>
+          </article>
+
+          <article class="card reveal">
+            <span class="card-number">03</span>
+            <p class="card-year">2013 — 2015</p>
+            <h3>Manutenção Elétrica</h3>
+            <p>Experiência na Açucareira de Xinavane, com segurança laboral, controlo de máquinas, solução de avarias e relatórios de atividades.</p>
+          </article>
         </div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Herminio - Todos os direitos reservados</p>
-    </footer>
+    <!-- =====================================================
+         COMPETÊNCIAS E FORMAÇÃO ACADÉMICA
+    ====================================================== -->
+    <section class="section" id="competencias">
+      <div class="container two-columns">
+        <div class="reveal">
+          <p class="eyebrow">Competências</p>
+          <h2 class="section-title">Preparação para decidir e liderar.</h2>
+
+          <div class="education-box">
+            <h3>Formação académica</h3>
+            <ul>
+              <li>Licenciatura em Informática — em curso</li>
+              <li>Nível Médio — Escola Secundária de Xai-Xai</li>
+              <li>Nível Básico — Instituto Industrial e Comercial 7 de Setembro</li>
+              <li>Eletricidade Geral — 2008 a 2012</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="skills-list reveal">
+          <div class="skill"><span>Conhecimento das Leis do Jogo</span><b>01</b></div>
+          <div class="skill"><span>Tomada de decisão sob pressão</span><b>02</b></div>
+          <div class="skill"><span>Comunicação eficaz</span><b>03</b></div>
+          <div class="skill"><span>Preparação física</span><b>04</b></div>
+          <div class="skill"><span>Trabalho em equipa</span><b>05</b></div>
+          <div class="skill"><span>Responsabilidade e disciplina</span><b>06</b></div>
+          <div class="skill"><span>Eletricidade e manutenção</span><b>07</b></div>
+          <div class="skill"><span>Português, Inglês e Changana</span><b>08</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CONTACTO
+    ====================================================== -->
+    <section class="contact" id="contacto">
+      <div class="container contact-content reveal">
+        <p class="eyebrow">Vamos conversar</p>
+        <h2>Disponível para novos desafios.</h2>
+        <p class="contact-text">Entre em contacto para oportunidades profissionais, competições, eventos desportivos ou colaboração técnica.</p>
+
+        <div class="contact-links">
+          <a href="tel:+258867878576">+258 86 787 8576</a>
+          <a href="mailto:Hboca93@gmail.com">Hboca93@gmail.com</a>
+          <a href="https://wa.me/258867878576" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="assets/HERMINIO-BOCA-CV.pdf" download>↓ Baixar CV</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé do portfólio -->
+  <footer>
+    <div class="container footer-content">
+      <!-- O JavaScript coloca automaticamente o ano atual -->
+      <p>© <span id="year"></span> Hermínio Armando Boca</p>
+      <a href="#inicio">Voltar ao início ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    /* =======================================================
+       1. MENU PARA TELEMÓVEIS
+       Procura o botão e a lista do menu no HTML.
+    ======================================================== */
+    const menuButton = document.querySelector(".menu-button");
+    const navLinks = document.querySelector(".nav-links");
+
+    /* Quando o botão é clicado, adiciona ou remove a classe open */
+    menuButton.addEventListener("click", function () {
+      const menuIsOpen = navLinks.classList.toggle("open");
+
+      /* Atualiza a informação de acessibilidade do botão */
+      menuButton.setAttribute("aria-expanded", menuIsOpen);
+
+      /* Troca o símbolo do botão quando o menu abre ou fecha */
+      menuButton.textContent = menuIsOpen ? "✕" : "☰";
+    });
+
+    /* Fecha o menu depois de selecionar uma opção */
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+        menuButton.textContent = "☰";
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    /* =======================================================
+       2. ANO AUTOMÁTICO NO RODAPÉ
+    ======================================================== */
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* =======================================================
+       3. ANIMAÇÃO AO ROLAR A PÁGINA
+       IntersectionObserver deteta elementos visíveis.
+    ======================================================== */
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    /* Aplica a animação a todos os elementos com a classe reveal */
+    document.querySelectorAll(".reveal").forEach(function (element) {
+      observer.observe(element);
+    });
+  </script>
 </body>
 </html>
